@@ -16,7 +16,7 @@ def setup():
     GPIO.setup(leftP, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(rightP, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(downP, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    keyboard= Controller()
+    print("Setup completato")
 
 def destroy():
     GPIO.cleanup()
@@ -25,12 +25,11 @@ def loop():
     while True:
         for i in range(len(pins)):
             if GPIO.input(pins[i]) == GPIO.HIGH:
-                print(keys[i],i)
-            else:
-                print("COSTA")
+                controller.tap(keys[i])
 
 pins=[32,31,38,36,40,37]
-keys=['enter','esc','up','left','right','down']
+keys=[Key.enter,Key.esc,Key.up,Key.left,Key.right,Key.down]
+keyboard= Controller()
 
 escP=pins[0]
 enterP=pins[1]
