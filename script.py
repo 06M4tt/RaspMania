@@ -10,12 +10,12 @@ import RPi.GPIO as GPIO
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(escP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(enterP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(upP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(leftP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(rightP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(downP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(escP, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(enterP, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(upP, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(leftP, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(rightP, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(downP, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     keyboard= Controller()
 
 def destroy():
@@ -23,14 +23,14 @@ def destroy():
 
 def loop():
     while True:
-        for i in pins:
-            if GPIO.input(i) == GPIO.HIGH:
-                print("BUSSI",i)
+        for i in range(len(pins)):
+            if GPIO.input(pins[i]) == GPIO.HIGH:
+                print(keys[i],i)
             else:
                 print("COSTA")
 
 pins=[32,31,38,36,40,37]
-key=['enter','esc','up','left','right','down']
+keys=['enter','esc','up','left','right','down']
 
 escP=pins[0]
 enterP=pins[1]
