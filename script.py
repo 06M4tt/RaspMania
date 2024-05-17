@@ -1,8 +1,8 @@
 '''
 
-      32  esc                        38
-                           36                  40
-      31  enter                      37
+      32(esc)                           38(up)
+                            36(left)                  40(right)
+      31(enter)                         37(down)
 
 '''
 from pynput.keyboard import Key, Controller
@@ -31,7 +31,7 @@ pins=[32, 31, 38, 36, 40, 37]
 keys=[Key.enter, Key.esc, Key.up, Key.left, Key.right, Key.down]
 keyboard= Controller()
 
-escP=p ins[0]
+escP= pins[0]
 enterP= pins[1]
 upP= pins[2]
 leftP= pins[3]
