@@ -27,16 +27,17 @@ def loop():
             if GPIO.input(pins[i]) == GPIO.HIGH:
                 controller.tap(keys[i])
 
-pins=[32,31,38,36,40,37]
-keys=[Key.enter,Key.esc,Key.up,Key.left,Key.right,Key.down]
+pins=[32, 31, 38, 36, 40, 37]
+keys=[Key.enter, Key.esc, Key.up, Key.left, Key.right, Key.down]
 keyboard= Controller()
 
-escP=pins[0]
-enterP=pins[1]
-upP=pins[2]
-leftP=pins[3]
-rightP=pins[4]
-downP=pins[5]
+escP=p ins[0]
+enterP= pins[1]
+upP= pins[2]
+leftP= pins[3]
+rightP= pins[4]
+downP= pins[5]
+
 
 setup()
 
