@@ -1,28 +1,47 @@
-from pynput import keyboard
+'''
 
-def on_press(key):
-    try:
-        print('alphanumeric key {0} pressed'.format(
-            key.char))
-    except AttributeError:
-        print('special key {0} pressed'.format(
-            key))
+      32  esc                        38
+                           36                  40
+      31  enter                      37
 
-def on_release(key):
-    print('{0} released'.format(
-        key))
-    if key == keyboard.Key.esc:
-        # Stop listener
-        return False
+'''
+from pynput.keyboard import Key, Controller
+import RPi.GPIO as GPIO
 
-# Collect events until released
-with keyboard.Listener(
-        on_press=on_press,
-        on_release=on_release) as listener:
-    listener.join()
+def setup():
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(escP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(enterP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(upP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(leftP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(rightP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(downP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    keyboard= Controller()
 
-# ...or, in a non-blocking fashion:
-listener = keyboard.Listener(
-    on_press=on_press,
-    on_release=on_release)
-listener.start()
+def destroy():
+    GPIO.cleanup()
+
+def loop():
+    while True:
+        for i in pins:
+            if GPIO.input(i) == GPIO.HIGH:
+                print("BUSSI",i)
+            else:
+                print("COSTA")
+
+pins=[32,31,38,36,40,37]
+key=['enter','esc','up','left','right','down']
+
+escP=pins[0]
+enterP=pins[1]
+upP=pins[2]
+leftP=pins[3]
+rightP=pins[4]
+downP=pins[5]
+
+setup()
+
+try:
+    loop()
+except KeyboardInterrupt:
+    destroy()
