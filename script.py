@@ -28,7 +28,7 @@ def loop():
                 controller.tap(keys[i])
 
 pins=[32, 31, 38, 36, 40, 37]
-keys=[Key.enter, Key.esc, Key.up, Key.left, Key.right, Key.down]
+keys=[Key.esc, Key.enter, Key.up, Key.left, Key.right, Key.down]
 keyboard= Controller()
 
 escP= pins[0]
