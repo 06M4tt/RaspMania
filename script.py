@@ -8,6 +8,7 @@
 from pynput.keyboard import Key, Controller
 import RPi.GPIO as GPIO
 from threading import Thread
+import time
 
 class pinListener(Thread):
 
@@ -18,9 +19,10 @@ class pinListener(Thread):
 
     def run(self):
         while True:
-            if GPIO.input(self.pin) == GPIO.HIGH:
-                keyboard.tap(self.key)
-                #print(""+str(self.pin)+"	"+str(self.key))
+            while GPIO.input(self.pin) == GPIO.HIGH:
+                keyboard.press(self.key)
+            keyboard.relase(self.key)
+            #print(""+str(self.pin)+"	"+str(self.key))
             if stopFlag == True:
                 return
 
