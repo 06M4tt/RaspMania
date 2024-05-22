@@ -21,7 +21,7 @@ class pinListener(Thread):
         while True:
             while GPIO.input(self.pin) == GPIO.HIGH:
                 keyboard.press(self.key)
-            keyboard.relase(self.key)
+            keyboard.release(self.key)
             #print(""+str(self.pin)+"	"+str(self.key))
             if stopFlag == True:
                 return
