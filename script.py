@@ -5,7 +5,7 @@
       31(enter)                         37(down)												13(down)
 
 '''
-from pynput.keyboard import Key, Controller
+from pynput.keyboard import Key, Controller, keyCode
 import RPi.GPIO as GPIO
 from threading import Thread
 
@@ -52,7 +52,7 @@ def startThreads():
     sDownT.start()
 
 pins=[32, 31, 38, 36, 40, 37, 12, 11, 15, 13]
-keys=[Key.esc, Key.enter, Key.up, Key.left, Key.right, Key.down]
+keys=[Key.esc, Key.enter, Key.up, Key.left, Key.right, Key.down, KeyCode.from_char('w'), KeyCode.from_char('a'), KeyCode.from_char('d'), KeyCode.from_char('s')]
 keyboard= Controller()
 stopFlag= False
 #esc and enter are in common
@@ -64,10 +64,10 @@ fLeftT = pinListener(pins[3], keys[3])
 fRightT = pinListener(pins[4], keys[4])
 fDownT = pinListener(pins[5], keys[5])
 #second player buttons
-sUpT = pinListener(pins[6], keys[2])
-sLeftT = pinListener(pins[7], keys[3])
-sRightT = pinListener(pins[8], keys[4])
-sDownT = pinListener(pins[9], keys[5])
+sUpT = pinListener(pins[6], keys[6])
+sLeftT = pinListener(pins[7], keys[7])
+sRightT = pinListener(pins[8], keys[8])
+sDownT = pinListener(pins[9], keys[9])
 
 setup()
 
