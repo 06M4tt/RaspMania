@@ -6,7 +6,8 @@ Circuit:
       31(enter)                         37(down)									                      13(down)
 
 
-This program is thought to be executed in the background meanwhile StepMania is played and a controller is correctly attached to the pins
+This program is thought to be executed in the background meanwhile StepMania is played
+Raspberry is supposed to be correctly attached to a controller linked to the pins showed up here
 It will NOT terminate by itself
 Any error in the circuit will NOT be handled by this program
 The first player will use the arrows, the second the keys w,a,s and d
